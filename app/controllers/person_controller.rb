@@ -1,7 +1,7 @@
 class PersonController < ApplicationController
   def index
     people = Person.includes(:cars).order("created_at DESC")
-    render json: people, include: 'cars'
+    render json: people, include: :cars
   end
 
   def create
@@ -23,6 +23,6 @@ class PersonController < ApplicationController
   
   private
     def person_param
-      params.require(:person).permit(:title, :done)
+      params.require(:person).permit(:first_name, :last_name, :email)
     end
 end
